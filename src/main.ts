@@ -183,7 +183,8 @@ async function run(): Promise<void> {
     // For backwards-compatibility
     core.setOutput('deleted', removedFormatted)
   } catch (error) {
-    core.setFailed(error.message)
+    const message = error instanceof Error ? error.message : 'Unknown error thrown'
+    core.setFailed(message)
   }
 }
 
